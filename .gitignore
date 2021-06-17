@@ -1,0 +1,19 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# vscode
+.vscode/
+
+# dataset
+dataset/new178/
+dataset/original_train/
+dataset/test/
+dataset/train/
+r3d_train.txt
+r3d.tfrecords
+
+# training
+log/
+pretrained_r3d/

@@ -1,3 +1,42 @@
+# fork & modify TF2DeepFloorplan
+이 repository는 [DeepFloorplan](https://github.com/zlzeng/DeepFloorplan)의 tensorflow, python 버전이 향상된 repository이다.
+
+도면 이미지와 아키스케치로 편집한 벽 데이터를 활용하여 해당 모델의 재학습을 진행하였다.
+
+2021.04.30 - 06.15
+
+> 수정사항
+> 
+> * 추가 dataset에 대한 재학습 가능
+> * dataset 추가 시 tfrecord 자동 생성
+> * 실행 시 tfrecord 존재여부 확인 및 자동 생성
+> * acc 확인 코드 삽입
+
+## Network
+> ### **FCN(Fully Convolutional Network) 사용**
+> : VGG-16 + decoding layer
+> 
+> - VGG-16의 마지막 Fully Connected Layer에서 classification의 위치 정보가 사라진다.
+>
+>   (모든 노드들이 서로 곱하고 더해진다)
+>
+> - FCL을 제거하고, FCN으로 대치한다.
+> - VGG를 통해 줄어든 feature의 크기를 입력 사이즈에 맞게 늘이기 위해서는 decoding 작업이 필요
+> - room boundary, room type에 따라 서로 다른 decoding 작업이 사용된다.
+> - 논문에서 제안된 decoding layer는 기존의 segentation 알고리즘(DeepLab, PSPNet)보다 더 나은 성능을 보인다고 설명하고 있다.
+
+## 실행
+```
+python train.py
+```
+
+재학습을 시키고 싶다면, 기존의 dataset과 같은 형태의 새로운 dataset을 생성하여 `dataset/train`폴더에 넣은 후, `newDS` 파라미터를 `True`로 설정한 후 실행시키면 된다
+```
+python train.py --newDS=True
+```
+
+---
+
 # TF2DeepFloorplan [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 This repo contains a basic procedure to train the DNN model suggested by the paper ['Deep Floor Plan Recognition using a Multi-task Network with Room-boundary-Guided Attention'](https://arxiv.org/abs/1908.11025). It rewrites the original codes from [zlzeng/DeepFloorplan](https://github.com/zlzeng/DeepFloorplan) into newer versions of Tensorflow and Python. 
 <br>

@@ -43,7 +43,7 @@ def up_bilinear(dim):
     return result
 
 class deepfloorplanModel(Model):
-    def __init__(self,config=None):
+    def __init__(self, num_classes, config=None):
         super(deepfloorplanModel,self).__init__()
         self._vgg16init()
         # room boundary prediction (rbp)
@@ -104,7 +104,7 @@ class deepfloorplanModel(Model):
         # learn rich feature
         self.lrf=[conv2d(dim=d) for d in dimlist]
         # final 
-        self.rtpfinal = up_bilinear(9)
+        self.rtpfinal = up_bilinear(num_classes)
             
     def _vgg16init(self):
         self.vgg16=VGG16(weights='imagenet',include_top=False,
