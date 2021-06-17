@@ -1,5 +1,5 @@
-* [fork & modify TF2DeepFloorplan](#fork-&-modify-TF2DeepFloorplan)
-* [README.md of original TF2DeepFloorplan](#TF2DeepFloorplan)
+* [fork & modify TF2DeepFloorplan](#fork--modify-tf2deepfloorplan)
+* [README.md of original TF2DeepFloorplan](#tf2deepfloorplan-)
 * [original research repository](https://github.com/zlzeng/DeepFloorplan)
 
 # fork & modify TF2DeepFloorplan
