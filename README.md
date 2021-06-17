@@ -1,12 +1,18 @@
+* [fork & modify TF2DeepFloorplan](#fork-&-modify-TF2DeepFloorplan)
+* [README.md of original TF2DeepFloorplan](#TF2DeepFloorplan)
+* [original research repository](https://github.com/zlzeng/DeepFloorplan)
+
 # fork & modify TF2DeepFloorplan
 이 repository는 [DeepFloorplan](https://github.com/zlzeng/DeepFloorplan)의 tensorflow, python 버전이 향상된 repository이다.
+
+Network 구조에 대한 자세한 내용은 [논문](resources/Deep Floor Plan Recognition Using a Multi-Task Network with Room-Boundary-Guided Attention.pdf)
 
 도면 이미지와 아키스케치로 편집한 벽 데이터를 활용하여 해당 모델의 재학습을 진행하였다.
 
 2021.04.30 - 06.15
 
-> 수정사항
-> 
+> **수정사항**
+> ---
 > * 추가 dataset에 대한 재학습 가능
 > * dataset 추가 시 tfrecord 자동 생성
 > * 실행 시 tfrecord 존재여부 확인 및 자동 생성
@@ -14,6 +20,7 @@
 
 ## Network
 > ### **FCN(Fully Convolutional Network) 사용**
+> ---
 > : VGG-16 + decoding layer
 > 
 > - VGG-16의 마지막 Fully Connected Layer에서 classification의 위치 정보가 사라진다.
@@ -32,8 +39,10 @@ python train.py
 
 재학습을 시키고 싶다면, 기존의 dataset과 같은 형태의 새로운 dataset을 생성하여 `dataset/train`폴더에 넣은 후, `newDS` 파라미터를 `True`로 설정한 후 실행시키면 된다
 ```
-python train.py --newDS=True
+python train.py --newDS=True --cmap=31
 ```
+
+`cmap` 파라미터를 통해 room_type의 class를 지정해줄 수도 있다.
 
 ---
 
